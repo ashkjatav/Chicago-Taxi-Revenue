@@ -33,12 +33,12 @@ Predictive and visualization models like these are interesting for many stakehol
 
 The primary data source comes from the publicly available Chicago Cab data on Google BigQuery. As this data was incomplete(2013-2015 only), data of 2016 and 2017 was downloaded from City of Chicago webpage and incorporated into the existing dataset on Google BigQuery to perform the further visualization and prediction part.
 
-*[Chicago Cab Data Year 2013-15](https://bigquery.cloud.google.com/table/bigquery-public-data:chicago_taxi_trips.taxi_trips?pli=1)
-*[Chicago Cab Data Year 2016-17](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew)
+* [Chicago Cab Data Year 2013-15](https://bigquery.cloud.google.com/table/bigquery-public-data:chicago_taxi_trips.taxi_trips?pli=1)
+* [Chicago Cab Data Year 2016-17](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew)
 
 In addition, weather data from NOAA was incorporated into the Cab data for prediction modeling.
 
-*[Weather Data](https://www.ncdc.noaa.gov/cdo-web/search?datasetid=GHCND)
+* [Weather Data](https://www.ncdc.noaa.gov/cdo-web/search?datasetid=GHCND)
 
 ### Challenges & Counter Measures
 
