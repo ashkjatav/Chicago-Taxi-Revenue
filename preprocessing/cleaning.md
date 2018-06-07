@@ -21,7 +21,7 @@ library(data.table)
 ```
 #### Reading 2016 data-set
 
-```{r}
+```R
 #Reading dataset and defining metadata
 df= fread("H:/Competition/Chicago_taxi_trips.csv",
           colClasses = c("Trip ID"="character","Taxi ID"= "character",
@@ -34,3 +34,4 @@ df= fread("H:/Competition/Chicago_taxi_trips.csv",
     "Pickup Centroid Latitude"= "integer","Pickup Centroid Longitude"= "integer", 
     "Pickup Centroid Location"= "character","Dropoff Centroid Latitude"= "integer",
        "Dropoff Centroid Longitude"= "integer","Dropoff Centroid  Location" ="character"))
+```
