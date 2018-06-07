@@ -37,6 +37,6 @@ One of the important national holiday is Labor Day, created to celebrate the con
 
 Memorial Day, Thanksgiving and Christmas of every year has the least number of taxi trips respectively. This is again due to the fact that there are few Taxi’s in service on these holidays. This explicit visualization motivated us to incorporate important holidays as parameters in our predictive model. 
 
-Image 3                    |
+                  |
 :-------------------------:|:-------------------------:
-![alt-text-1](images/chicago_3.png)  |
+![alt-text-1](images/chicago_3.png)  |![alt-text-2](images/chicago_4.png) 
