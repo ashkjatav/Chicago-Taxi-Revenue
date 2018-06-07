@@ -194,7 +194,7 @@ GROUP BY time_identifier_hour ,time_identifier_day, time_identifier_month , time
 ORDER BY  time_identifier_hour ,time_identifier_year, time_identifier_month, time_identifier_day
 ```
 
-#### FINAL DATA (HOURLY): -
+#### `FINAL DATA (HOURLY)`: -
 
 ```sql
 SELECT * 
