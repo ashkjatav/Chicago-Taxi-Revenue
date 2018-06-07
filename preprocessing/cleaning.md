@@ -85,9 +85,9 @@ This data-set was appended to the Google BigQuery table and then hourly and dail
 #### Subset selection on Google Bigquery
 
 In the following query we calculated the daily total (SUM) taxi fares for each Taxi ID for each day in the data. The whole dataset was grouped by Taxi_ID and day. Apart from trip seconds, trip miles and trip total median values were selected for all other parameters. We also took care of the outliers in the query. We selected the following constraints as mentioned above: -
-• The ratio of trip total and trip miles should be greater than two, for instance if trip distance is 2 miles, the charge should be at least $4. Also, to prevent high outliers the same ratio should be less than 10.
-• With the city traffic and speed restrictions, speed i.e. ratio of trip miles and trip hour was kept less than 70. This enforces another restriction that trip seconds should have non-zero values. 
-• The minimum fare amount for any trip in Chicago is $2.25, hence all the fare values should have non-zero values. 
+* The ratio of trip total and trip miles should be greater than two, for instance if trip distance is 2 miles, the charge should be at least $4. Also, to prevent high outliers the same ratio should be less than 10.
+* With the city traffic and speed restrictions, speed i.e. ratio of trip miles and trip hour was kept less than 70. This enforces another restriction that trip seconds should have non-zero values. 
+* The minimum fare amount for any trip in Chicago is $2.25, hence all the fare values should have non-zero values. 
 
 #### MySQL Queries – Daily Data
 #### `TABLE-1`
