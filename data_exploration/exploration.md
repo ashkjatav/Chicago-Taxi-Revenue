@@ -49,3 +49,36 @@ We deduced why trip miles were skyrocketing during that interval. It turns out t
 Image 7                    |  Image 8
 :-------------------------:|:-------------------------:
 ![alt-text-1](images/chicago_7.png)  |  ![alt-text-2](images/chicago_8.png)
+
+Weekly and hourly analysis made us curious and we wanted to see the combine effect of day of the week and hour of the day on number of rides. It would provide the exact the day and hour at which Chicago Transport Authority (CTA) should have maximum number of active taxis. This heatmap (Image 9) gives a clear picture about dependence of both the parameters on number of rides. From 0-6 on Monday through Friday there are less number of rides, hence less number of taxis required to balance the demand. Chicagoans generally like to relax on Friday and Saturday, traveling a lot within the city, drinking which gives rise to more number of rides. Also, talking about allocation of resources CTA should have large number of taxis from 0th hour to 6th hour on Saturday and Sunday. Heatmap for Total trip is similar to the number of rides.
+
+![png](images/chicago_9.png)
+
+As mentioned previously, heatmap is entirely different for average fare. If some of the cabbies are looking to make more money per ride, following heatmap is very useful for them. It paints a profitable picture where there is high return on investment, if a cabby is willing to serve from 4AM-7AM. The traffic density at this time is less which aides higher fuel efficiency.
+
+![png](images/chicago_10.png)
+
+Also keeping in mind that since these rides are lengthier time and distance wise, from our own experiences, we have always tipped more in such situations. Hence, we plotted the similar heatmap for average tips, our intuition was right as many people appreciated the work done by cabbies and that too at 5AM or 6AM. Average tips were fairly high in the night time as well.
+
+![png](images/chicago_11.png)
+
+So far, we understood the importance of time features. Next, we wanted to understand the importance of pick up and drop off location.
+
+Chicago’s taxi pickup declines are not evenly distributed among the city’s 77 community areas. For example, the Loop, Chicago’s central business district, shows a 23% annual decline, while Logan Square on the northwest side shows a 50% annual decline. In general, the areas located closest to the central business district show smaller declines in taxi activity.
+
+We defined 5 particular community areas—the Loop, Near North Side, Near West Side, Near South Side, and O’Hare Airport—as the “core”, then compared pickups inside and outside of the core. (Figure 12) As of November 2016, pickups inside the core shows a 27% annual decline compared to a 42% annual decline outside of the core. On a cumulative basis, core pickups have declined 39% since June 2014, while non-core pickups have declined a whopping 65%.
+
+Image 12                    |  Image 13
+:-------------------------:|:-------------------------:
+![alt-text-1](images/chicago_12.png)  |  ![alt-text-2](images/chicago_13.png)
+
+The above figure depicts the distribution of number of rides for six different areas. It again emphasizes the importance of those ‘Core’ areas we talked about earlier.
+
+
+
+
+One of the parameter that is most important for any taxi company to know is what are some of the most influential pick up areas in a particular city. Generally, these are the areas which have a great revenue potential and by focusing on these areas one can increase a taxi’s overall profit. As mentioned earlier there are some of the core areas, the reason we called them as a core area was because of their extreme affluence, typified by the Magnificent Mile, Gold Coast, Navy Pier, and its world-famous skyscrapers. Magnificent mile and Gold Coast are among the top ten richest neighborhoods in America. Navy Pier is the number one tourist destination in Chicago City, drawing nearly nine million visitors annually.
+
+![png](images/chicago_14.png)
+
+Because of such affluence, business and tourism these areas account for a major portion of revenue for the Chicago Taxis. O’Hare, as mentioned before, is the second-busiest airport in the world by the number of takeoffs and landings and also contributes majorly towards the revenue.
