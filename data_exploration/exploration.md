@@ -68,9 +68,8 @@ Chicago’s taxi pickup declines are not evenly distributed among the city’s 7
 
 We defined 5 particular community areas—the Loop, Near North Side, Near West Side, Near South Side, and O’Hare Airport—as the “core”, then compared pickups inside and outside of the core. (Figure 12) As of November 2016, pickups inside the core shows a 27% annual decline compared to a 42% annual decline outside of the core. On a cumulative basis, core pickups have declined 39% since June 2014, while non-core pickups have declined a whopping 65%.
 
-Image 12                    |  Image 13
-:-------------------------:|:-------------------------:
-![alt-text-1](images/chicago_12.png)  |  ![alt-text-2](images/chicago_13.png)
+![png](images/chicago_12.png)
+![png](images/chicago_13.png)
 
 The above figure depicts the distribution of number of rides for six different areas. It again emphasizes the importance of those ‘Core’ areas we talked about earlier.
 
