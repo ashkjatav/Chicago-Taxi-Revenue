@@ -17,7 +17,6 @@ The first step in this study is Exploratory data analysis of the cab data. Our a
 We begin by examining how Chicago cab business has changed over time, especially after the advent of the savvy competitors like Uber and Lyft. In Chicago, Uber and Lyft entered the cab business in 2011 and 2013 respectively.
 We plot the Total Yearly pickups and Total Yearly Fare graphs. From the first graph, it can be noticed that there is a sharp decline in the number of pickups with an annual rate of 35% after 2014. Total revenues per year follows the same trend with the total cab business at $18 million in 2016 as opposed to $35 million in 2013. This suggests Uber and Lyft has a grasp on the customer base with their competitive prices. 
 
-Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
 ![alt-text-1](images/chicago_1.png)  |  ![alt-text-2](images/chicago_2.png) 
 
