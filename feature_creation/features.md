@@ -29,6 +29,7 @@ library(lubridate)
 df= fread("hourly_data_2013-2016.csv")
 head(df)
 ```
+
 **hour**|**day**|**year**|**month**|**taxi\_id**|**Number\_rides**|**trip\_start\_timestamp**|**trip\_end\_timestamp**|**trip\_seconds**|**trip\_miles**|**trip\_total**|**payment\_types**|**companies**|**pickup\_latitude**|**pickup\_longitude**|**pickup\_location**|**dropoff\_latitude**|**dropoff\_longitude**|**dropoff\_location**| 
 :-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:
 0|1|2013|1|2c35ec|3|2013-01-01 00:45:00 UTC|2013-01-01 00:45:00 UTC|1380|6|27.15|Cash| |41.92268628|-87.64220631|POINT (-87.6422063127 41.9305785697)|41.92904694|-87.65131088|POINT (-87.6513108767 41.9290469366)| 
