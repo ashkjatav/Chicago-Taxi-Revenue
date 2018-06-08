@@ -167,4 +167,7 @@ df2$Special_day= ifelse(df2$time_identifier_day=='2013-03-17'|
                          df2$time_identifier_day=='2016-11-24',1,0)
 ```
 
-Similar Feature extraction was done on the 2017 test data.
+```R
+write.csv(df2, "train_hourly.csv", row.names=FALSE)
+
+Similar Feature extraction was done on the daily and 2017 test data.
