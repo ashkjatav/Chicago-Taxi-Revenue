@@ -82,3 +82,89 @@ df1$companies[is.na(df1$companies)]= "other"
 df1$companies= as.factor(df1$companies)
 
 ```
+
+Now let's talk about Timestamp and how to incorporate it into Machine Leaerning algorithms. The major challenge in including time as a predictor is that it is inherently cyclical. Time has components which are minutes, hours, seconds, day of week, week of month, month, season, and so on all follow cycles. Ecological features like tide, astrological features like position in orbit, spatial features like rotation or longitude, visual features like color wheels are all naturally cyclical.
+
+We wanted our statistical learning algorithm to incorporate the cyclic nature of the time. For instance, we want our predictive model to see that 23:55 and 00:05 are 10 minutes apart, but as it stands, those times will appear to be 23 hours and 50 minutes apart! Therefore, we broke the time variable into small pieces.
+
+Independent Cyclic Features: -
+* Hourfloat: - Hour of the day as a (binned!) floating point number between 0 and 1. Since there are 24 hours in a day, our bin contains total 24 divisions. If hour and minute component of trip_start_timestamp has a value 14:20, the minute component is converted into hourly component and whole fraction value is divided by 24. So, 14:20 becomes, 14.33/24=0.597.
+* Day_cat: -Day of the week as a categorical feature: "Monday", "Tuesday", etc.
+* Day_num: - Day of the week as a numerical feature going from 0 (Monday morning, start of the week) to 1 (Sunday night), European style. With 24 bins, Tuesday afternoon 14:20:00 would translate to (1+hourfloat)/7= 0.2292
+
+Similar procedure was performed to evaluate monthfloat and yearfloat. But to remove cyclicity the binned "hourfloat " variable converted to a sine and cosine version so that time nicely 'loops' rather than going saw-like when it traverses midnight. As depicted in the figure, this transformation doesn't have any magic powers, but it can make it easier for a model to find the right patterns.
+
+![png](images/chicago1.png)
+
+* hourfloat_sin: -Binned "hourfloat" variable converted to a cosine version. "hourfloat_sin" = cos⁡(hourfloat×2×π). For 24 bins per day, 14:20:00 would translate to, cos⁡(0.597×2×π)= 0.99.
+* hourfloat_cos: -Binned "hourfloat" variable converted to a cosine version. "hourfloat_cos" = sin⁡(hourfloat×2×π). For 24 bins per day, 14:20:00 would translate to, sin⁡(0.597×2×π)= 0.05.
+
+Similarly predictor space with parameters day_sin, day_cos, year_sin, year_cos,month_sin, month_cos was built. We can feed the sin and cos features into our machine learning model, and the cyclical nature of 24-hour time will carry over.
+
+```R
+df1$year= year(df1$trip_start_timestamp)
+df1$month= month(df1$trip_start_timestamp)
+df1$day=  day(df$trip_start_timestamp)
+df1$hourfloat= (hour(df1$trip_start_timestamp) + minute(df1$trip_start_timestamp)/60)/24
+df1$hourfloat_sin= sin(2*pi*df1$hourfloat)
+df1$hourfloat_cos= cos(2*pi*df1$hourfloat)
+df1$day_cat= weekdays(df1$trip_start_timestamp)
+df1$day_num= (as.POSIXlt(df1$trip_start_timestamp)$wday + df1$hourfloat)/7
+df1$day_sin= sin(2*pi*df1$day_num)
+df1$day_cos= cos(2*pi*df1$day_num)
+df1$yearfloat = (yday(df1$time_identifier_day)-1)/365
+df1$year_cos= cos(2*pi*df1$yearfloat)
+df1$year_sin= sin(2*pi*df1$yearfloat)
+df1$month= as.numeric(df1$month)
+df1$monthfloat= (df1$month-1)/30
+df1$month_cos= cos(2*pi*df1$monthfloat)
+df1$month_sin= sin(2*pi*df1$monthfloat)
+```
+Considering how weather affects the people's mood to book a cab, people would want to take a walk when the weather is pleasant or they would be attempting to book a cab when its snowing or raining heavily especially during the rush hours, we incorporate the weather data into our dataset.
+
+#### Reading weather data from 2013 to 2016
+```R
+weather= fread("chicago_weather_data_13_16.csv")
+weather= weather %>% 
+  select(-STATION, -STATION_NAME)
+colnames(weather)[1]='time_identifier_day'
+weather$time_identifier_day= anydate(weather$time_identifier_day)
+```
+#### Merging weather data in Cab data
+
+```R
+df1$time_identifier_day= anydate(df1$time_identifier_day)
+df2= left_join(df1, weather, by= "time_identifier_day")
+df2$unique= format(df2$trip_start_timestamp, "%Y-%m-%d %H")
+df2= df2[!duplicated(df2$unique),]
+```
+
+Remember, we talked about impact of holidays or special events in the city on the Cab business during EDA, we will include `St. Patrick's Day`,
+`Memorial Day`, `Labor Day`, `Thanksgiving` and `Christmas Eve`.
+
+```R
+df2$Special_day=""
+
+df2$Special_day= ifelse(df2$time_identifier_day=='2013-03-17'|
+                         df2$time_identifier_day=='2014-03-17'|
+                         df2$time_identifier_day=='2015-03-17'|
+                         df2$time_identifier_day=='2016-03-17'|
+                         df2$time_identifier_day=='2013-12-25'|
+                         df2$time_identifier_day=='2014-12-25'|
+                         df2$time_identifier_day=='2015-12-25'|
+                         df2$time_identifier_day=='2016-12-25'|
+                         df2$time_identifier_day=='2013-09-02'|
+                         df2$time_identifier_day=='2014-09-01'|
+                         df2$time_identifier_day=='2015-09-07'|
+                         df2$time_identifier_day=='2016-09-06'|
+                         df2$time_identifier_day=='2013-05-27'|
+                         df2$time_identifier_day=='2014-05-26'|
+                         df2$time_identifier_day=='2015-05-25'|
+                         df2$time_identifier_day=='2016-05-30'|
+                         df2$time_identifier_day=='2013-11-28'|
+                         df2$time_identifier_day=='2014-11-27'|
+                         df2$time_identifier_day=='2015-11-26'|
+                         df2$time_identifier_day=='2016-11-24',1,0)
+```
+
+Similar Feature extraction was done on the 2017 test data.
