@@ -61,6 +61,17 @@ df1= df %>%
 
 When we looked at the mode of payment, we noticed that most of the riders prefer to pay by Cash and Credit with less than 5% of the total riders paying through Mobile Wallet or somthing similar. So we combined all the classes other than `Cash` and `Credit Card` into `other`.
 
+| Payment Type | #Rides |
+|--------------|--------|
+| Cash         | 69811  |
+| Credit Card  | 18179  |
+| No Charge    | 399    |
+| Dispute      | 48     |
+| Unknown      | 21     |
+| Pcard        | 10     |
+| Prcard       | 9      |
+
+
 ```R
 df1=df1 %>%
   mutate(payment_types= ifelse(payment_types=="Cash", "Cash", 
@@ -69,6 +80,24 @@ df1=df1 %>%
 ```
 
 Similar step was done in the `Companies` feature. There seems to be erroneous entries in the company types as the classes had unwanted strings and punctuation. This was causing same companies to appear as different classes. So, we first removed all the punctuation and numbers from the classes and then looked at the total number of rides booked through each company. There were around 100 companies, and only 6 of them only had more than 2000 number of rides over the course of 4 years. Remember!, we have taken median hourly ride. So, it makes around 35000 datapoints. Most of the companies total number of rides were less than 100. We clubbed all the company types other than the major 6 into `other` class.
+
+| Companies                         | # Rides |
+|-----------------------------------|---------|
+| Taxi Affiliation Services         | 17048   |
+| Dispatch Taxi Affiliation         | 10607   |
+| Choice Taxi Association           | 5579    |
+| Northwest Management LLC          | 3022    |
+| KOAM Taxi Association             | 1990    |
+| Top Cab Affiliation               | 1299    |
+| Chicago Medallion Leasing INC     | 560     |
+| Chicago Medallion Management      | 349     |
+| Blue Ribbon Taxi Association Inc. | 60      |
+| 3201 - C&D Cab Co Inc             | 22      |
+| 6743 - 78771 Luhak Corp           | 22      |
+| 585 - 88805 Valley Cab Co         | 22      |
+| 3141 - 87803 Zip Cab              | 22      |
+| ….                                |         |
+| ….                                |         |
 
 ```R
 df1= df1 %>% 
