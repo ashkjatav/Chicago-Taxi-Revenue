@@ -24,8 +24,7 @@ For Random Forest, cross validation is done using n_estimators, the number of tr
 
 For LightGBM, cross validation is done using num_leaves (number of leaves in full tree) equal to 20,40,60,80 and learning rate being set to 0.01 and 0.1 (the rate at which the model converges).
 
-After optimizing the hyper-parameters, the models were fit on the testing data. We used two different datasets to predict hourly, daily median fare. The hourly data have around 33000 rows and daily around 1600 rows rows. Metrics R-squared and RMSE for training and testing data is shown below for each model.
-
+After optimizing the hyper-parameters, the models were fit on the testing data. We used two different datasets to predict hourly, daily median fare. The hourly data have around 33000 rows and daily around 1600 rows rows.
 #### Importing Libraries
 ```python
 import pandas as pd
