@@ -120,3 +120,69 @@ display_split_metrics(lr, X, y, Xt, yt)
 | DF Error      | 33734    | 4881       |
 | R-Squared     | 0.5258   | 0.5294     |
 | RMSE          | 3.0326   | 3.2577     |
+
+
+We will use GridSearch to optimize the parameters in Random Forest and LightGBM
+
+#### Random Forest
+
+```python
+estimator = RandomForestRegressor(n_estimators=20, n_jobs=-1)
+# Funtion for cross-validation over a grid of parameters
+def cv_optimize(clf, parameters, X, y, n_jobs=1, n_folds=5, score_func=None, \
+                verbose=0):
+    if score_func:
+        gs = GridSearchCV(clf, param_grid=parameters, cv=n_folds, \
+                          n_jobs=n_jobs, scoring=score_func, verbose=verbose)
+    else:
+        gs = GridSearchCV(clf, param_grid=parameters, n_jobs=n_jobs,\
+                         cv=n_folds, verbose=verbose)
+    gs.fit(X, y)
+    print ("BEST", gs.best_params_, gs.best_score_, gs.grid_scores_,\
+            gs.scorer_)
+    print ("Best score: ", gs.best_score_)
+    best = gs.best_estimator_
+    return best
+# Define a grid of parameters over which to optimize the random forest
+# We will figure out which number of trees is optimal
+
+parameters = {"n_estimators": [10,20,30],
+              "max_features":  ["auto","sqrt","log2"]
+              "max_depth": [50]}
+
+best = cv_optimize(estimator, parameters, X, y, n_folds=5,\
+                    score_func='mean_squared_error', verbose=3)
+
+# Fit the best Random Forest and calculate R^2 values for training and test sets
+reg=best.fit(X, y)
+training_accuracy = reg.score(X, y)
+test_accuracy = reg.score(Xt, yt)
+
+print ("############# based on standard predict ################")
+print ("R^2 on training data: %0.4f" % (training_accuracy))
+print ("R^2 on test data:     %0.4f" % (test_accuracy))
+# Calculate the Root Mean Squared Error
+
+rmse = np.sqrt(mean_squared_error(reg.predict(Xt),yt))
+print ("RMSE = %0.3f (this is in log-space!)" % rmse)
+print ("So two thirds of the records would be a factor of less than %0.2f \
+	away from the real value." % np.power(10,rmse))
+import operator
+dict_feat_imp = dict(zip(list(predictor_space.columns.values),reg.feature_importances_))
+sorted_features = sorted(dict_feat_imp.items(), key=operator.itemgetter(1), reverse=True)
+sorted_features
+```
+    R^2 on training data: 0.9667
+    R^2 on test data:     0.6886
+    RMSE = 2.650 (this is in log-space!)
+    So two thirds of the records would be a factor of less than 446.68 	away from the real value.
+    
+Important Features Plot
+
+```python
+csv=pd.DataFrame(sorted_features)
+plt.figure();
+csv[[0,1]].tail(10).plot(kind='barh', x=0, y=1,legend=False, figsize=(8, 8));
+```
+
+![png](images/chicago_1.png)
