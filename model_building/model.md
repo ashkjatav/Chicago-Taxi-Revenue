@@ -80,7 +80,7 @@ df_interval_test= df_interval_test.apply(lambda x: x.fillna(x.mean()),axis=0)
 df_final=pd.concat([df_interval,df_encoded],ignore_index=False,axis=1)
 df_final_test=pd.concat([df_interval_test,df_encoded_test],ignore_index=False,axis=1)
 ```
-#### Linear Regression
+#### `Linear Regression`
 
 ```python
 predictor_space=df_final.drop('trip_total',axis=1)
@@ -124,7 +124,7 @@ display_split_metrics(lr, X, y, Xt, yt)
 
 We will use GridSearch to optimize the parameters in Random Forest and LightGBM
 
-#### Random Forest
+#### `Random Forest`
 
 ```python
 estimator = RandomForestRegressor(n_estimators=20, n_jobs=-1)
@@ -187,7 +187,7 @@ csv[[0,1]].tail(10).plot(kind='barh', x=0, y=1,legend=False, figsize=(8, 8));
 
 ![png](images/chicago_1.png)
 
-#### LightGBM
+#### `LightGBM`
 
 ```python
 estimator = LGBMRegressor(num_boost_round=1000, n_jobs=-1)
@@ -249,3 +249,22 @@ pd.DataFrame(sorted_features)[[0,1]].head(10).plot(kind='barh', x=0, y=1,legend=
 ```
 
 ![png](images/chicago_2.png)
+
+#### RESULTS
+
+Metrics R-squared and RMSE for training and testing data is shown below for each model.
+
+| Model             |        | Model Metrics | Training | Testing |
+|-------------------|--------|---------------|----------|---------|
+| Linear Regression | Hourly | R-Squared     | 0.5258   | 0.5294  |
+|                   |        | RMSE          | 3.0326   | 3.2577  |
+|                   | Daily  | R-Squared     | 0.7287   | 0.5484  |
+|                   |        | RMSE          | 19.5233  | 21.4986 |
+| Random Forest     | Hourly | R-Squared     | 0.9668   | 0.6887  |
+|                   |        | RMSE          | 0.80     | 2.65    |
+|                   | Daily  | R-Squared     | 0.9726   | 0.6998  |
+|                   |        | RMSE          | 6.20     | 17.528  |
+| LightGBM          | Hourly | R-Squared     | 0.8796   | 0.7405  |
+|                   |        | RMSE          | 1.52     | 2.419   |
+|                   | Daily  | R-Squared     | 0.9497   | 0.7327  |
+|                   |        | RMSE          | 8.40     | 16.54   |
