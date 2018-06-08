@@ -112,11 +112,11 @@ def display_split_metrics(lr, Xt, yt, Xv, yv):
         
 display_split_metrics(lr, X, y, Xt, yt)
 ```
-| Model Metrics..........       Training     Validation |
+| Model Metrics      |Training      |  Validation |
 |-------------------------------------------------------|
-| Observations...........          33776           4923 |
-| Coefficients...........             42             42 |
-| DF Error...............          33734           4881 |
-| R-Squared..............         0.5258         0.5294 |
-| RMSE...................         3.0326         3.2577 |
-
+| Observations       |   33776      |     4923    |
+| Coefficients       |      42      |       42    |
+| DF Error           |   33734      |     4881    |
+| R-Squared          |  0.5258      |   0.5294    |
+| RMSE               |  3.0326      |   3.2577    |
+ 
