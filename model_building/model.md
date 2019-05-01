@@ -251,8 +251,8 @@ pd.DataFrame(sorted_features)[[0,1]].head(10).plot(kind='barh', x=0, y=1,legend=
 
 #### RESULTS
 
-Metrics R-squared and RMSE for training and testing data is shown below for each model.
-
+Metrics R-squared and RMSE for training and testing data is shown below for each model
+<!---
 | Model             |        | Model Metrics | Training | Testing |
 |-------------------|--------|---------------|----------|---------|
 | Linear Regression | Hourly | R-Squared     | 0.5258   | 0.5294  |
@@ -267,3 +267,4 @@ Metrics R-squared and RMSE for training and testing data is shown below for each
 |                   |        | RMSE          | 1.52     | 2.419   |
 |                   | Daily  | R-Squared     | 0.9497   | 0.7327  |
 |                   |        | RMSE          | 8.40     | 16.54   |
+-->
